@@ -15,5 +15,5 @@ export default function getContractEvents(
 ): Promise<Event[]> {
     const filter = contractInstance.filters[eventName](...eventParameters)
 
-    return contractInstance.queryFilter(filter)
+    return contractInstance.queryFilter(filter, -1000)
 }

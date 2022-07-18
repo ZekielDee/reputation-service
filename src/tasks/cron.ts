@@ -11,7 +11,7 @@ export async function run() {
 
     schedule.scheduleJob(`*/${config.CRON_INTERVAL} * * * *`, { tz: "Europe/Rome" }, async () => {
         try {
-            const events = await retrieveEvents("OffchainGroupUpdated")
+            const events = await retrieveEvents("GroupUpdated")
 
             // Get all the new db root nodes not yet published onchain.
             const merkleRoots = await MerkleTreeNode.find({

@@ -4,7 +4,8 @@ import { Group, GroupName, Provider } from "src/types/groups"
 import { defaultIncrementalMerkleTreeRoot } from "src/utils/common/crypto"
 import checkGroup from "./checkGroup"
 
-export default async function getGroup(provider: Provider, name: GroupName): Promise<Group> {
+// removed return Promise<Group>
+export default async function getGroup(provider: Provider, name: GroupName) {
     if (!checkGroup(provider, name)) {
         throw new Error(`The ${provider} ${name} group does not exist`)
     }
@@ -17,6 +18,7 @@ export default async function getGroup(provider: Provider, name: GroupName): Pro
         depth: config.MERKLE_TREE_DEPTH,
         root: root ? root.hash : defaultIncrementalMerkleTreeRoot.toString(),
         size: await MerkleTreeNode.getNumberOfActiveLeaves({ name, provider }),
-        numberOfLeaves: await MerkleTreeNode.getNumberOfNodes({ name, provider }, 0)
+        numberOfLeaves: await MerkleTreeNode.getNumberOfNodes({ name, provider }, 0),
+        onchainRoot: root
     }
 }

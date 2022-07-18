@@ -24,7 +24,10 @@ export default async function updateOffchainGroups(
         })
     }
 
-    const transaction = await contractInstance.updateOffchainGroups(groups)
+    // const txOptions = { gasLimit: 2100000, gasPrice: 8000000000}
+    const transaction = await contractInstance.updateGroups(groups)
+    // const transaction = await contractInstance.updateGroups(groups, txOptions)
+    console.log("UPDATED OFFCHAIN GROUPS")
 
     return transaction.wait(1)
 }

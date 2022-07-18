@@ -37,7 +37,7 @@ export default NextAuth({
     callbacks: {
         async signIn(user: User, account: Account) {
             const providers = getOAuthProviders()
-
+            console.log("SIGN IN CALLBACK CALLED")
             if (
                 !account ||
                 !account.provider ||

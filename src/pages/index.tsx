@@ -60,6 +60,7 @@ export default function OAuthProvidersPage(): JSX.Element {
     useEffect(() => {
         ;(async () => {
             const groups = await getGroups()
+            console.log("GROUPS", groups)
 
             if (groups) {
                 setOAuthProviders(groupBy(groups, "provider", Object.values(OAuthProvider)))
@@ -174,7 +175,10 @@ export default function OAuthProvidersPage(): JSX.Element {
                                     alertMessage={`Interep wants to connect with the last ${capitalize(
                                         p[0]
                                     )} account you logged into. Approving this message will open a new window.`}
-                                    onClick={() => _signIn(p[0])}
+                                    onClick={() => {
+                                        console.log("sign in clicked");
+                                        _signIn(p[0])
+                                    }}
                                     disabled={!_account}
                                 >
                                     Authorize
@@ -241,14 +245,16 @@ export default function OAuthProvidersPage(): JSX.Element {
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
+    console.log(req.cookies)
     const authorized = !!req.cookies["__Secure-next-auth.session-token"] || !!req.cookies["next-auth.session-token"]
-
+    // console.log("req on getServerSidePropsL: ", req);
     if (!authorized) {
         return {
             props: {}
         }
     }
-
+    console.log(authorized);
+    console.log("you have been redirected");
     return {
         redirect: {
             destination: "/oauth",

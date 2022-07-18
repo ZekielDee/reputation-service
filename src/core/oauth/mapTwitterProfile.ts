@@ -11,7 +11,7 @@ export default async function mapTwitterProfile({
     verified
 }: User): Promise<User & TwitterParameters> {
     const botometerResult = await getBotometerScore(screen_name)
-
+    
     return {
         id: id_str,
         name,

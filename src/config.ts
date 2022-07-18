@@ -29,18 +29,22 @@ export enum ContractName {
 export enum SupportedChainId {
     LOCALHOST = 31337,
     KOVAN = 42,
-    ARBITRUM = 42161
+    ARBITRUM = 42161,
+    MUMBAI = 80001
 }
 
 export const contractAddresses: Record<number, Record<ContractName, any>> = {
     [SupportedChainId.LOCALHOST]: {
-        [ContractName.INTEREP]: "0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9"
+        [ContractName.INTEREP]: "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512"
     },
     [SupportedChainId.KOVAN]: {
         [ContractName.INTEREP]: "0xBeDb7A22bf236349ee1bEA7B4fb4Eb2403529030"
     },
     [SupportedChainId.ARBITRUM]: {
         [ContractName.INTEREP]: "0xa2A7f256B4Ea653eef95965D09bbdBb4b4526419"
+    },
+    [SupportedChainId.MUMBAI]: {
+        [ContractName.INTEREP]: "0x7131ba0d21cf74aE67e64C539AF0cFf8780Bf836"
     }
 }
 
@@ -56,6 +60,10 @@ export const supportedNetworks: Record<string, NetworkData> = {
     arbitrum: {
         name: "arbitrum",
         chainId: SupportedChainId.ARBITRUM
+    },
+    mumbai: {
+        name: "mumbai",
+        chainId: SupportedChainId.MUMBAI,
     }
 }
 

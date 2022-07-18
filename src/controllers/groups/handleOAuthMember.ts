@@ -127,6 +127,7 @@ export default async function handleOAuthMemberController(req: NextApiRequest, r
         const account = await OAuthAccount.findById(accountId)
 
         if (!account) {
+            console.log(account, )
             throw new Error(`The account does not exist`)
         }
 
